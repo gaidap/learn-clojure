@@ -1,6 +1,7 @@
-(ns learn-clojure.core)
+(ns learn-clojure.core
+  (:gen-class))
 
-(defn foo
+(defn -main
   "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+  [& args]
+  (println "I'm a little teapot!"))
