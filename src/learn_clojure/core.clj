@@ -1,4 +1,5 @@
-(ns learn-clojure.core)
+(ns learn-clojure.core
+  (:require [clojure.core.match :refer [match]]))
 
 #_(
     reduce
@@ -53,9 +54,32 @@
                      (set [part (matching-part part)])))))))
 
 (defn simple-symmetrize-body-parts
-  "Expects a seq of mas that have a :name and :size"
+  "Expects a seq of sets that have a :name and :size"
   [asym-body-parts]
   (reduce (fn [final-body-parts part]
             (into final-body-parts (set [part (matching-part part)])))
           []
           asym-body-parts))
+
+(def incomplete-spider-parts [
+                              {:name "head" :size 2}
+                              {:name "eye" :size 1}
+                              {:name "hairy-leg" :size 3}
+                              {:name "body" :size 3}
+                              {:name "butt" :size 8}])
+
+(defn expand-spider-part
+  "multiplies eyes and legs of a spider."
+  [part]
+  (match part
+         {:name "eye" :size 1} (repeat 5 part)
+         {:name "hairy-leg" :size 3} (repeat 8 part)
+         :else part))
+
+(defn spider-body-expander
+  "Expects a seq of sets that have a :name and :size"
+  [incomplete-body-parts]
+  (reduce (fn [final-body-parts part]
+            (into final-body-parts (expand-spider-part part)))
+          []
+          incomplete-body-parts))
