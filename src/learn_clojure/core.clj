@@ -1,5 +1,20 @@
 (ns learn-clojure.core)
 
+#_(
+    reduce
+
+    (reduce f coll)(reduce f val coll)
+
+    f should be a function of 2 arguments. If val is not supplied,
+    returns the result of applying f to the first 2 items in coll, then
+    applying f to that result and the third item, etc. If coll contains no
+    items, f must accept no arguments as well, and reduce returns the
+    result of calling f with no arguments.  If coll has only 1 item, it
+    is returned and f is not called.  If val is supplied, returns the
+    result of applying f to val and the first item in coll, then
+    applying f to that result and the second item, etc. If coll contains no
+    items, returns val and f is not called.)
+
 (def asym-hobbit-body-parts [{:name "head" :size 3}
                              {:name "left-eye" :size 1}
                              {:name "left-ear" :size 1}
@@ -36,3 +51,11 @@
         (recur remaining
                (into final-body-parts
                      (set [part (matching-part part)])))))))
+
+(defn simple-symmetrize-body-parts
+  "Expects a seq of mas that have a :name and :size"
+  [asym-body-parts]
+  (reduce (fn [final-body-parts part]
+            (into final-body-parts (set [part (matching-part part)])))
+          []
+          asym-body-parts))
