@@ -14,5 +14,8 @@
       <entry name="!?*.clj" />
       <entry name="!?*.aj" />
     </wildcardResourcePatterns>
+    <bytecodeTargetLevel>
+      <module name="learn-clojure" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
