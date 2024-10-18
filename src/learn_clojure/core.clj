@@ -94,3 +94,5 @@
       (if (> accumulated-size target)
         part
         (recur remaining-parts (+ accumulated-size (:size (first remaining-parts))))))))
+
+; 5. Page 70
