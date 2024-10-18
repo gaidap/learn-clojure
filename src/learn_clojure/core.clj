@@ -35,3 +35,7 @@
 (def dec23 (dec-maker 23))
 
 ; 4. (mapset inc [1 1 2 2 3]) => #{2 3 4}
+(defn mapset
+  [f coll]
+  (into #{} (map f coll)))
+
