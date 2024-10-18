@@ -83,3 +83,14 @@
             (into final-body-parts (expand-spider-part part)))
           []
           incomplete-body-parts))
+
+(defn hit
+  [asym-body-parts]
+  (let [sym-parts (simple-symmetrize-body-parts asym-body-parts)
+        body-part-size-sum (reduce + (map :size sym-parts))
+        target (rand body-part-size-sum)]
+    (loop [[part & remaining-parts] sym-parts
+           accumulated-size (:size part)]
+      (if (> accumulated-size target)
+        part
+        (recur remaining-parts (+ accumulated-size (:size (first remaining-parts))))))))
