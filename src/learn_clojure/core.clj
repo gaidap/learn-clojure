@@ -48,3 +48,8 @@
   [suspects suspect-map]
   (if (every? valid? suspect-map)
     (concat suspects suspect-map)))
+
+(defn maps->csv-string
+  [suspect-maps]
+  (clojure.string/join "\n" (map (fn [suspect]
+                                   (clojure.string/join "," (vals suspect))) suspect-maps)))
