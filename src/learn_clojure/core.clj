@@ -1,7 +1,4 @@
-(ns learn-clojure.core
-  (:gen-class))
-
-(declare successful-move prompt-mve game-over query-rows)
+(ns learn-clojure.core)
 
 (defn tri*
   "Generates lazy sequence of triangular numbers"
