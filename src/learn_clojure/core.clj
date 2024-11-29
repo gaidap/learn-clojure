@@ -6,6 +6,7 @@
 
 (defmacro code-critic
   "Phrases are courtesy of Hermes Conrad from Futurama"
-  [bad good]
-  `(do ~(criticize-code "Great squid of Madrid, this is bad code:" bad)
-       ~(criticize-code "Sweet gorilla of Manila, this is good code:" good)))
+  [{:keys [good bad]}]
+  `(do ~@(map #(apply criticize-code %)
+              [["Sweet lion of Zion, this is bad code:" bad]
+               ["Great cow of Moscow, this is good code:" good]])))
